@@ -8,6 +8,7 @@
 import BackendLib
 import SwiftData
 import SwiftUI
+import Assets
 
 struct ContentView: View {
     @State private var cycleService: CycleService
@@ -20,8 +21,8 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Button("create cycle") {
-                let cycle = cycleService.createCycle()
-                cycle.sympthoms?.append(CycleSymptom(day: Date(), symptom: .acne))
+                //let cycle = cycleService.createCycle()
+                //cycle.sympthoms?.append(CycleSymptom(day: Date(), symptom: .acne))
             }
             Button("fetch sympthom") {}
             Button("add sympthom") {}
