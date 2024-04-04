@@ -34,8 +34,12 @@ struct CoreApp: App {
     var body: some Scene {
         WindowGroup {
             BackendProvider {
-                ContentView(context: container.mainContext)
-            }.modelContainer(container)
+                NavigationView {
+                    SideBarView()
+                }
+                .modelContainer(container)
+                .preferredColorScheme(.light)
+            }
         }
     }
 }
