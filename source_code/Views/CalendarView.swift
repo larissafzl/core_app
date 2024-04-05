@@ -9,27 +9,60 @@ import SwiftUI
 
 struct CalendarView: View {
     var body: some View {
-        VStack {
+        ScrollView {
             HStack {
-                Text("Hello, Julia")
-                    .font(.system(size: 20))
+                VStack(alignment: .leading) {
+                    // Greetings
+                    Text("Hello, Julia!")
+                        .font(.system(.title2))
+
+                    HStack {
+                        // Calendar
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(width: 460, height: 370)
+
+                        VStack(alignment: .leading) {
+                            // Begin cycle
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(width: 142, height: 78)
+
+                            // Current cycle phase
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(width: 317, height: 281)
+                        }
+                    }
+                    .padding(.bottom, 32)
+
+                    // Selected date
+                    Text("Thursday, 14 March 2024")
+                        .bold()
+                        .font(.system(.title))
+
+                    Text("Personal Records")
+                        .font(.system(.title2))
+
+                    HStack {
+                        // Calendar
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(width: 460, height: 370)
+
+                        VStack(alignment: .leading) {
+                            // Begin cycle
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(width: 142, height: 78)
+
+                            // Current cycle phase
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(width: 317, height: 281)
+                        }
+                    }
+
+                    Spacer()
+                }
+                .padding()
+
                 Spacer()
             }
-
-            Rectangle()
-                .frame(width: 140, height: 140)
-                .cornerRadius(65)
-                .overlay(
-                    VStack {
-                        Text("14")
-                            .font(.system(size: 40))
-                        Text("TODAY")
-                            .font(.system(size: 14))
-                    }
-                )
-
-            Spacer()
         }
-        .padding()
     }
 }

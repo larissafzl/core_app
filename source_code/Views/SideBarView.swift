@@ -20,6 +20,7 @@ struct SideBarView: View {
             }
             .padding(.top, 16)
             .background(Color.clear)
+            .listStyle(.sidebar)
         }
     }
 
@@ -27,6 +28,7 @@ struct SideBarView: View {
         NavigationLink(destination: destination) {
             Label(label, systemImage: systemImage)
                 .frame(height: 56)
+                .fixedSize(horizontal: true, vertical: false)
         }
     }
 }
