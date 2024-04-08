@@ -7,11 +7,19 @@
 
 import Assets
 import SwiftUI
+import BackendLib
 
+// Main component for the sexual activity box
+// it's subcomponents are inside the same SexualActivityComponent
+// this main component receives the cycle in which it's going to save
+// the sexual activity
+// it also receives the selected day in the calendar
 struct SexualActivityComponent: View {
     @State private var isShowingPopover = false
     @State private var didHaveSex = false
     @State private var didUseCondom = false
+    var currentCycle: Cycle
+    var currentDay: Date
     @ViewBuilder
     var body: some View {
         VStack {
@@ -36,13 +44,13 @@ struct SexualActivityComponent: View {
             }
 
             // Button Section
-            Divider().frame(height: 20)
+            Divider().frame(height: 10)
             Button("Add Activity") {
                 self.isShowingPopover = true
             }
             .buttonStyle(.plain)
             .popover(isPresented: $isShowingPopover) {
-                SexualActivityPopOver(didHaveSex: $didHaveSex, didUseCondom: $didUseCondom)
+                SexualActivityPopOver(didHaveSex: $didHaveSex, didUseCondom: $didUseCondom, currentDay: Date())
                     .padding()
             }
         }
@@ -66,62 +74,10 @@ struct SexualActivityComponent: View {
         Spacer()
         HStack {
             Spacer()
-            SexualActivityComponent()
+            SexualActivityComponent(currentCycle: Cycle(startDate: Date(), endDate: Date()), currentDay: Date())
                 .preferredColorScheme(.light)
             Spacer()
         }
         Spacer()
     }.background(.black)
-}
-
-enum ActivityType {
-    case sex
-    case protection
-}
-
-struct RoundedIcon: View {
-    let type: ActivityType
-    init(_ type: ActivityType) {
-        self.type = type
-    }
-    var body: some View {
-        VStack {
-            Circle()
-                .fill(
-                    type == .sex ? Colors.red_200 : Colors.purple_300
-                )
-                .frame(width: 80, height: 80)
-            Text("Sex")
-        }
-    }
-}
-
-struct SexualActivityPopOver: View {
-    @Binding var didHaveSex: Bool
-    @Binding var didUseCondom: Bool
-    @State var didHaveSexToggle: Bool = false
-    @State var didUseCondomToggle: Bool = false
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text("Sexual activity")
-            .foregroundStyle(Colors.purple_700)
-            Text("Thursday, 14 March 2024")
-                .font(.title3)
-            Divider()
-            Text("Did you have sex?").opacity(0.8)
-            Toggle(isOn: $didHaveSexToggle) {}
-                .toggleStyle(SwitchToggleStyle(tint: Colors.red_300))
-            Divider()
-            Text("Did you use a condom").opacity(0.8)
-            Toggle(isOn: $didUseCondomToggle) {}
-                .toggleStyle(SwitchToggleStyle(tint: Colors.purple_500))
-            Divider()
-            Button("Done") {
-                didHaveSex = didHaveSexToggle
-                didUseCondom = didUseCondomToggle
-            }
-            .buttonStyle(.borderedProminent)
-            .tint(Colors.purple_300)
-        }
-    }
 }

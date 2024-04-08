@@ -40,9 +40,9 @@ struct CoreApp: App {
     var body: some Scene {
         WindowGroup {
             BackendProvider {
-                SexualActivityComponent()
-                    .modelContainer(container)
-                    .preferredColorScheme(.light)
+                //SexualActivityComponent()
+                 //   .modelContainer(container)
+                  //  .preferredColorScheme(.light)
             }
         }
     }
