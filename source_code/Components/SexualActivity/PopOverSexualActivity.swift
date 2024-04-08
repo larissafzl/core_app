@@ -7,19 +7,32 @@
 
 import SwiftUI
 import Assets
+import BackendLib
+import SwiftData
 
 struct SexualActivityPopOver: View {
     @Binding var didHaveSex: Bool
     @Binding var didUseCondom: Bool
     @State var didHaveSexToggle: Bool
     @State var didUseCondomToggle: Bool
-    var currentDay: Date
-    init(didHaveSex: Binding<Bool>, didUseCondom: Binding<Bool>, currentDay: Date) {
+    @State private var cycleService: CycleService
+    let currentDay: Date
+    let cycle: Cycle
+    init(
+        context: ModelContext,
+        cycle: Cycle,
+        didHaveSex: Binding<Bool>,
+        didUseCondom: Binding<Bool>,
+        currentDay: Date
+    ) {
         self._didHaveSex = didHaveSex
         self._didUseCondom = didUseCondom
         self.didHaveSexToggle = didHaveSex.wrappedValue
         self.didUseCondomToggle = didUseCondom.wrappedValue
         self.currentDay = currentDay
+        self.cycle = cycle
+        let cycleService = CycleService(context: context)
+        _cycleService = State(initialValue: cycleService)
     }
     var body: some View {
         VStack(alignment: .leading) {
@@ -39,6 +52,12 @@ struct SexualActivityPopOver: View {
             Button("Done") {
                 didHaveSex = didHaveSexToggle
                 didUseCondom = didUseCondomToggle
+                cycleService.addSexualActivity(
+                    cycle: cycle,
+                    didHaveSex: didHaveSex,
+                    didUseCondom: didUseCondom,
+                    date: currentDay
+                )
             }
             .buttonStyle(.borderedProminent)
             .tint(Colors.purple_300)

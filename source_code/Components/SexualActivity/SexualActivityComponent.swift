@@ -8,6 +8,7 @@
 import Assets
 import SwiftUI
 import BackendLib
+import SwiftData
 
 // Main component for the sexual activity box
 // it's subcomponents are inside the same SexualActivityComponent
@@ -15,11 +16,22 @@ import BackendLib
 // the sexual activity
 // it also receives the selected day in the calendar
 struct SexualActivityComponent: View {
+    @Environment(\.modelContext) private var context
     @State private var isShowingPopover = false
     @State private var didHaveSex = false
     @State private var didUseCondom = false
     var currentCycle: Cycle
     var currentDay: Date
+    init(currentCycle: Cycle, currentDay: Date) {
+        self.currentCycle = currentCycle
+        self.currentDay = currentDay
+        // verify if this day has a sexual activity
+        let sexActivity = currentCycle.sexualActivities?.first(where: {
+            $0.day.timeIntervalSince1970 == currentDay.timeIntervalSince1970
+        })
+        didHaveSex = sexActivity?.didHaveSex ?? false
+        didUseCondom = sexActivity?.didUseCondom ?? false
+    }
     @ViewBuilder
     var body: some View {
         VStack {
@@ -50,8 +62,14 @@ struct SexualActivityComponent: View {
             }
             .buttonStyle(.plain)
             .popover(isPresented: $isShowingPopover) {
-                SexualActivityPopOver(didHaveSex: $didHaveSex, didUseCondom: $didUseCondom, currentDay: Date())
-                    .padding()
+                SexualActivityPopOver(
+                    context: context,
+                    cycle: currentCycle,
+                    didHaveSex: $didHaveSex,
+                    didUseCondom: $didUseCondom,
+                    currentDay: currentDay
+                )
+                .padding()
             }
         }
         .padding()
