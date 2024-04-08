@@ -93,7 +93,6 @@ struct SelectedFrame: View {
         .contentShape(Rectangle())
         .background(Color.white.opacity(0.8))
         .cornerRadius(15)
-        .padding(.all, 16)
         .onAppear(perform: {
             setData()
         })

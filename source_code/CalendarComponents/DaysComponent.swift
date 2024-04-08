@@ -66,11 +66,11 @@ struct DaysComponent: View {
             }, label: {
                 ZStack(alignment: .center) {
                     if dayToUseOneCalendar < 10 {
-                        Text(" 0\(dayToUseOneCalendar)")
+                        Text("0\(dayToUseOneCalendar)")
                             .font(.custom("Poppins", size: 16))
                             .colorMultiply(.black)
                     } else if dayToUseOneCalendar >= 10 {
-                        Text(" \(dayToUseOneCalendar)")
+                        Text("\(dayToUseOneCalendar)")
                             .font(.custom("Poppins", size: 16))
                             .colorMultiply(.black)
                     }
