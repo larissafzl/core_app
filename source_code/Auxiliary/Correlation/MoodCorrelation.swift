@@ -5,8 +5,10 @@
 //  Created by Clissia Bozzer Bovi on 04/04/24.
 //
 
+import Assets
 import BackendLib
 import Foundation
+import SwiftUI
 
 enum MoodCorrelation {
     static func getText(_ mood: MoodType) -> String {
@@ -40,7 +42,6 @@ enum MoodCorrelation {
 
     static func getMoodType(_ text: String) -> MoodType {
         let mood = Mood(rawValue: text)
-
         switch mood {
         case .calm:
             return MoodType.calm
@@ -68,6 +69,37 @@ enum MoodCorrelation {
             return MoodType.emotional
         case nil:
             return MoodType.calm
+        }
+    }
+
+    static func getImage(_ mood: MoodType) -> Image {
+        switch mood {
+        case .calm:
+            return Images.moodCalm.swiftUIImage
+        case .happy:
+            return Images.moodHappy.swiftUIImage
+        case .energetic:
+            return Images.moodEnergetic.swiftUIImage
+        case .sleepy:
+            return Images.moodTired.swiftUIImage
+        case .irritated:
+            // faltante
+            return Images.moodCalm.swiftUIImage
+        case .anxious:
+            return Images.moodAnxious.swiftUIImage
+        case .sad:
+            return Images.moodSad.swiftUIImage
+        case .lowEnergy:
+            // faltante
+            return Images.moodSad.swiftUIImage
+        case .apathetic:
+            return Images.moodApathetic.swiftUIImage
+        case .confused:
+            return Images.moodConfused.swiftUIImage
+        case .verySelfCritical:
+            return Images.moodSelfcritical.swiftUIImage
+        case .emotional:
+            return Images.moodEmotional.swiftUIImage
         }
     }
 }

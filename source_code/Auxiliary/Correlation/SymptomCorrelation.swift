@@ -5,8 +5,10 @@
 //  Created by Clissia Bozzer Bovi on 04/04/24.
 //
 
+import Assets
 import BackendLib
 import Foundation
+import SwiftUI
 
 enum SymptomCorrelation {
     static func getText(_ symptom: SymptomType) -> String {
@@ -63,6 +65,35 @@ enum SymptomCorrelation {
             return SymptomType.insomnia
         case nil:
             return SymptomType.sensitiveBreasts
+        }
+    }
+
+    static func getImage(_ symptom: SymptomType) -> Image {
+        switch symptom {
+        case .sensitiveBreasts:
+            return Images.symptomTenderbreasts.swiftUIImage
+        case .cramp:
+            return Images.symptomCramps.swiftUIImage
+        case .headache:
+            return Images.symptomHeadache.swiftUIImage
+        case .fever:
+            // faltante
+            return Images.symptomAcne.swiftUIImage
+        case .backache:
+            return Images.symptomBackpain.swiftUIImage
+        case .acne:
+            return Images.symptomAcne.swiftUIImage
+        case .tiredness:
+            // faltante
+            return Images.symptomAcne.swiftUIImage
+        case .veryHungry:
+            return Images.symptomLargeappetite.swiftUIImage
+        case .notHungry:
+            return Images.symptomLackofappetite.swiftUIImage
+        case .nausea:
+            return Images.symptomNausea.swiftUIImage
+        case .insomnia:
+            return Images.symptomInsomnia.swiftUIImage
         }
     }
 }

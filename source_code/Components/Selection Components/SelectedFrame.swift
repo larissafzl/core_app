@@ -7,17 +7,19 @@
 
 import Assets
 import BackendLib
+import SwiftData
 import SwiftUI
 
 struct SelectedFrame: View {
     @State private var isPopoverPresented: Bool = false
     @State private var selectedElements: [SelectionElement] = []
     @State private var listElements: [SelectionElement] = []
-    @State private var buttonText = "Adicionar sintoma"
-    @State private var titleText = "Seus sintomas de hoje"
+    @State private var buttonText = ""
+    @State private var titleText = ""
+    @State var popOverTitle: String = ""
 
     var cycle: Cycle
-    var cycleService: CycleService
+    var context: ModelContext
     let selectionType: SelectionType
     let date: Date
 
@@ -26,6 +28,7 @@ struct SelectedFrame: View {
         listElements = data.list
         buttonText = data.buttonTitle
         titleText = data.titleText
+        popOverTitle = data.popOverTitle
     }
 
     private func getDate() -> String {
@@ -39,17 +42,19 @@ struct SelectedFrame: View {
         VStack(spacing: 16) {
             HStack {
                 Text(titleText)
-                    .foregroundStyle(Color(ColorName.Label))
+                    .padding(.leading, 16)
+                    .foregroundStyle(Color(Colors.purple_700))
+                Spacer()
             }
             .padding(.top, 8)
+            .frame(width: 488)
             .padding(.bottom, selectedElements.count == 0 ? -4 : 0)
-            .padding(.leading, -160)
 
             VStack(spacing: 0) {
                 ScrollView([.horizontal], showsIndicators: false) {
                     HStack(spacing: 12) {
-                        ForEach(selectedElements, id: \.self) { _ in
-                            Images.pikachu.swiftUIImage
+                        ForEach(selectedElements) { element in
+                            element.image
                                 .resizable()
                                 .frame(width: 60, height: 60)
                                 .clipShape(Circle())
@@ -62,7 +67,7 @@ struct SelectedFrame: View {
                 .frame(height: selectedElements.count == 0 ? 0 : 60)
 
                 Divider()
-                    .foregroundColor(Color(ColorName.Elements))
+                    .foregroundColor(Color(Colors.gray_400))
                     .padding(.leading, 20)
                     .padding(.trailing, 20)
 
@@ -77,19 +82,19 @@ struct SelectedFrame: View {
                                    listElements: $listElements,
                                    dateString: getDate(),
                                    cycle: cycle,
-                                   cycleService: cycleService,
+                                   context: context,
                                    selectionType: selectionType,
-                                   date: date)
+                                   date: date,
+                                   title: popOverTitle)
                         .frame(width: 300, height: 400)
-                        .interactiveDismissDisabled()
                 }
                 .buttonStyle(.plain)
-                .foregroundColor(Color(ColorName.Button))
+                .foregroundColor(Color(Colors.blue_500))
                 .frame(width: 380, height: 0)
                 .padding(.all, 16)
             }
         }
-        .frame(width: 380, height: selectedElements.count == 0 ? 80 : 150)
+        .frame(width: 506, height: selectedElements.count == 0 ? 80 : 150)
         .contentShape(Rectangle())
         .background(Color.white.opacity(0.8))
         .cornerRadius(15)

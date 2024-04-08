@@ -8,15 +8,15 @@
 import Foundation
 
 enum Symptons: String {
-    case sensitiveBreasts = "Seios sensíveis"
-    case cramp = "Cólica"
-    case headache = "Dor de cabeça"
-    case fever = "Febre"
-    case backache = "Dor nas costas"
+    case sensitiveBreasts = "Sensitive Breasts"
+    case cramp = "Cramps"
+    case headache = "Headache"
+    case fever = "Fever"
+    case backache = "Backache"
     case acne = "Acne"
-    case tiredness = "Cansaço"
-    case veryHungry = "Apetite descontrolado"
-    case notHungry = "Falta de apetite"
+    case tiredness = "Tiredness"
+    case veryHungry = "Very Hungry"
+    case notHungry = "Not Hungry"
     case nausea = "Nausea"
-    case insomnia = "Insônia"
+    case insomnia = "Insomnia"
 }

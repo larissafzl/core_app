@@ -5,7 +5,9 @@
 //  Created by Clissia Bozzer Bovi on 25/03/24.
 //
 
+import Assets
 import BackendLib
+import SwiftData
 import SwiftUI
 
 struct SelectionPopUp: View {
@@ -15,12 +17,14 @@ struct SelectionPopUp: View {
     @State private var selectedElements: [SelectionElement] = []
     @State private var removedElements: [SelectionElement] = []
     @State var dateString: String
+    @State private var cycleService: CycleService
 
     var cycle: Cycle
-    var cycleService: CycleService
+    var context: ModelContext
     let columns = [GridItem(.flexible())]
     let selectionType: SelectionType
     let date: Date
+    let title: String
 
     private func passToFrame() {
         for element in selectedElements {
@@ -86,25 +90,53 @@ struct SelectionPopUp: View {
         }
     }
 
+    init(selection: Binding<[SelectionElement]>,
+         listElements: Binding<[SelectionElement]>,
+         dateString: String,
+         cycle: Cycle,
+         context: ModelContext,
+         selectionType: SelectionType,
+         date: Date,
+         title: String)
+    {
+        _selection = selection
+        _listElements = listElements
+        self.dateString = dateString
+        self.cycle = cycle
+        self.context = context
+        self.selectionType = selectionType
+        self.date = date
+        self.title = title
+        let cycleService = CycleService(context: context)
+        _cycleService = State(initialValue: cycleService)
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
-            Text(dateString)
-                .font(.title3)
-                .padding(.horizontal)
-                .foregroundColor(Color(ColorName.Label))
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.system(size: 13))
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(Colors.purple_700)
+
+                Text(dateString)
+                    .font(.system(size: 17))
+                    .foregroundColor(Color(Colors.gray_700))
+            }
+            .padding(.leading, 16)
 
             Divider()
 
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 36) {
-                    ForEach(listElements, id: \.self) { element in
+                LazyVGrid(columns: columns, spacing: 24) {
+                    ForEach(listElements) { element in
                         let index = listElements.firstIndex(of: element) ?? 0
                         let didTapElement = element.didTap
                         HStack(spacing: 10) {
                             Circle()
                                 .size(CGSize(width: 20, height: 20))
                                 .foregroundColor(didTapElement ?
-                                    Color(ColorName.ButtonBackground) : Color(ColorName.Elements))
+                                    Color(Colors.purple_600) : Color(Colors.gray_400))
 
                             Text(element.selectionName)
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -112,7 +144,7 @@ struct SelectionPopUp: View {
                                     dimension[VerticalAlignment.center]
                                 }
                                 .foregroundColor(didTapElement ?
-                                    Color(ColorName.ButtonBackground) : Color(ColorName.Elements))
+                                    Color(Colors.purple_600) : Color(Colors.gray_400))
 
                             Spacer()
                         }
@@ -138,10 +170,8 @@ struct SelectionPopUp: View {
                 Text("Concluído")
             }
             .buttonStyle(.borderedProminent)
-            .tint(Color(ColorName.ButtonBackground))
+            .tint(Color(Colors.purple_500))
             .frame(width: 100, height: 28)
-            .padding([.leading, .trailing], 16)
-            .padding(.bottom, -8)
         }
         .padding(.vertical)
         .background(Color.white)

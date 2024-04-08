@@ -8,16 +8,16 @@
 import Foundation
 
 enum Mood: String {
-    case calm = "Calmo"
-    case happy = "Feliz"
-    case energetic = "Enérgico"
-    case sleepy = "Sonolento"
-    case irritated = "Irritado"
-    case anxious = "Ansioso"
-    case sad = "Triste"
-    case lowEnergy = "Pouca energia"
-    case apathetic = "Apático"
-    case confused = "Confuso"
-    case verySelfCritical = "Muito autocrítica"
-    case emotional = "Emocionado"
+    case calm = "Calm"
+    case happy = "Happy"
+    case energetic = "Energetic"
+    case sleepy = "Sleepy"
+    case irritated = "Irritated"
+    case anxious = "Anxious"
+    case sad = "Sad"
+    case lowEnergy = "LowEnergy"
+    case apathetic = "Apathetic"
+    case confused = "Confused"
+    case verySelfCritical = "Very Self Critical"
+    case emotional = "Emotional"
 }
