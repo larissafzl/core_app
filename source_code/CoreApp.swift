@@ -40,11 +40,9 @@ struct CoreApp: App {
     var body: some Scene {
         WindowGroup {
             BackendProvider {
-                NavigationView {
-                    SideBarView(date: $date)
-                }
-                .modelContainer(container)
-                .preferredColorScheme(.light)
+                //SexualActivityComponent()
+                 //   .modelContainer(container)
+                  //  .preferredColorScheme(.light)
             }
         }
     }
