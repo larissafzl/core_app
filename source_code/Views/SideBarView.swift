@@ -12,11 +12,13 @@ import SwiftUI
 
 struct SideBarView: View {
     @Binding var date: Date
+    @State var cycleService: CycleService
 
     var body: some View {
         VStack {
             List {
-                sidebarItem(label: "Calendar", systemImage: "calendar", destination: AnyView(CalendarView(date: $date)))
+                sidebarItem(label: "Calendar", systemImage: "calendar",
+                            destination: AnyView(CalendarView(cycleService: cycleService, date: $date)))
                 sidebarItem(label: "Exams", systemImage: "calendar", destination: AnyView(ExamsView()))
                 sidebarItem(label: "Graphic", systemImage: "calendar", destination: AnyView(GraphicView()))
             }

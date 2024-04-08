@@ -5,9 +5,12 @@
 //  Created by Larissa Fazolin on 04/04/24.
 //
 
+import BackendLib
+import SwiftData
 import SwiftUI
 
 struct CalendarView: View {
+    @State var cycleService: CycleService
     @Binding var date: Date
 
     var monthToPass = Calendar.current.component(.month, from: Date())
@@ -23,8 +26,6 @@ struct CalendarView: View {
 
                     LazyHStack {
                         // Calendar
-//                        RoundedRectangle(cornerRadius: 10)
-//                            .frame(width: 460, height: 370)
                         CalendarComponent(month: monthToPass,
                                           year: yearToPass,
                                           date: $date)
@@ -50,18 +51,15 @@ struct CalendarView: View {
                         .font(.system(.title2))
 
                     LazyHStack {
-                        // Calendar
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 460, height: 370)
-
-                        LazyVStack(alignment: .leading) {
-                            // Begin cycle
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(width: 142, height: 78)
-
-                            // Current cycle phase
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(width: 317, height: 281)
+                        LazyVStack {
+                            SelectedFrame(cycle: cycleService.cycles.first!,
+                                          cycleService: cycleService, selectionType: .symptons, date: Date())
+                            SelectedFrame(cycle: cycleService.cycles.first!,
+                                          cycleService: cycleService, selectionType: .mood, date: Date())
+                        }
+                        LazyVStack {
+                            LibidoIntensityFrame()
+                            FlowPeriodIntensity()
                         }
                     }
 
