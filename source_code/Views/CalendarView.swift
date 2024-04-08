@@ -16,12 +16,12 @@ struct CalendarView: View {
     var body: some View {
         ScrollView {
             HStack {
-                VStack(alignment: .leading) {
+                LazyVStack(alignment: .leading) {
                     // Greetings
                     Text("Hello, Julia!")
                         .font(.system(.title2))
 
-                    HStack {
+                    LazyHStack {
                         // Calendar
 //                        RoundedRectangle(cornerRadius: 10)
 //                            .frame(width: 460, height: 370)
@@ -29,7 +29,7 @@ struct CalendarView: View {
                                           year: yearToPass,
                                           date: $date)
 
-                        VStack(alignment: .leading) {
+                        LazyVStack(alignment: .leading) {
                             // Begin cycle
                             RoundedRectangle(cornerRadius: 10)
                                 .frame(width: 142, height: 78)
@@ -49,12 +49,12 @@ struct CalendarView: View {
                     Text("Personal Records")
                         .font(.system(.title2))
 
-                    HStack {
+                    LazyHStack {
                         // Calendar
                         RoundedRectangle(cornerRadius: 10)
                             .frame(width: 460, height: 370)
 
-                        VStack(alignment: .leading) {
+                        LazyVStack(alignment: .leading) {
                             // Begin cycle
                             RoundedRectangle(cornerRadius: 10)
                                 .frame(width: 142, height: 78)
@@ -68,8 +68,6 @@ struct CalendarView: View {
                     Spacer()
                 }
                 .padding()
-
-                Spacer()
             }
         }
     }
