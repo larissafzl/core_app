@@ -19,4 +19,7 @@ enum Symptons: String {
     case notHungry = "Not Hungry"
     case nausea = "Nausea"
     case insomnia = "Insomnia"
+    case diarrhea = "Diarrhea"
+    case constipation = "Constipation"
+    case bloating = "Bloating"
 }

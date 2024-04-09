@@ -29,28 +29,34 @@ enum Mocks {
 
         var buttonTitle: String = "Add Symptom"
 
-        var list: [SelectionElement] = [SelectionElement(selectionName: SymptomCorrelation.getText(.sensitiveBreasts),
-                                                         image: SymptomCorrelation.getImage(.sensitiveBreasts)),
-                                        SelectionElement(selectionName: SymptomCorrelation.getText(.cramp),
-                                                         image: SymptomCorrelation.getImage(.cramp)),
+        var list: [SelectionElement] = [SelectionElement(selectionName: SymptomCorrelation.getText(.tenderbreasts),
+                                                         image: SymptomCorrelation.getImage(.tenderbreasts)),
+                                        SelectionElement(selectionName: SymptomCorrelation.getText(.cramps),
+                                                         image: SymptomCorrelation.getImage(.cramps)),
                                         SelectionElement(selectionName: SymptomCorrelation.getText(.headache),
                                                          image: SymptomCorrelation.getImage(.headache)),
                                         SelectionElement(selectionName: SymptomCorrelation.getText(.fever),
                                                          image: SymptomCorrelation.getImage(.fever)),
-                                        SelectionElement(selectionName: SymptomCorrelation.getText(.backache),
-                                                         image: SymptomCorrelation.getImage(.backache)),
+                                        SelectionElement(selectionName: SymptomCorrelation.getText(.backpain),
+                                                         image: SymptomCorrelation.getImage(.backpain)),
                                         SelectionElement(selectionName: SymptomCorrelation.getText(.acne),
                                                          image: SymptomCorrelation.getImage(.acne)),
                                         SelectionElement(selectionName: SymptomCorrelation.getText(.nausea),
                                                          image: SymptomCorrelation.getImage(.nausea)),
                                         SelectionElement(selectionName: SymptomCorrelation.getText(.tiredness),
                                                          image: SymptomCorrelation.getImage(.tiredness)),
-                                        SelectionElement(selectionName: SymptomCorrelation.getText(.veryHungry),
-                                                         image: SymptomCorrelation.getImage(.veryHungry)),
-                                        SelectionElement(selectionName: SymptomCorrelation.getText(.notHungry),
-                                                         image: SymptomCorrelation.getImage(.notHungry)),
+                                        SelectionElement(selectionName: SymptomCorrelation.getText(.largeappetite),
+                                                         image: SymptomCorrelation.getImage(.largeappetite)),
+                                        SelectionElement(selectionName: SymptomCorrelation.getText(.lackofappetite),
+                                                         image: SymptomCorrelation.getImage(.lackofappetite)),
                                         SelectionElement(selectionName: SymptomCorrelation.getText(.insomnia),
-                                                         image: SymptomCorrelation.getImage(.insomnia))]
+                                                         image: SymptomCorrelation.getImage(.insomnia)),
+                                        SelectionElement(selectionName: SymptomCorrelation.getText(.diarrhea),
+                                                         image: SymptomCorrelation.getImage(.diarrhea)),
+                                        SelectionElement(selectionName: SymptomCorrelation.getText(.constipation),
+                                                         image: SymptomCorrelation.getImage(.constipation)),
+                                        SelectionElement(selectionName: SymptomCorrelation.getText(.bloating),
+                                                         image: SymptomCorrelation.getImage(.bloating))]
     }
 
     struct Mood: SelectionData {
@@ -66,24 +72,22 @@ enum Mocks {
                                                          image: MoodCorrelation.getImage(.happy)),
                                         SelectionElement(selectionName: MoodCorrelation.getText(.energetic),
                                                          image: MoodCorrelation.getImage(.energetic)),
-                                        SelectionElement(selectionName: MoodCorrelation.getText(.sleepy),
-                                                         image: MoodCorrelation.getImage(.sleepy)),
                                         SelectionElement(selectionName: MoodCorrelation.getText(.irritated),
                                                          image: MoodCorrelation.getImage(.irritated)),
                                         SelectionElement(selectionName: MoodCorrelation.getText(.anxious),
                                                          image: MoodCorrelation.getImage(.anxious)),
                                         SelectionElement(selectionName: MoodCorrelation.getText(.sad),
                                                          image: MoodCorrelation.getImage(.sad)),
-                                        SelectionElement(selectionName: MoodCorrelation.getText(.lowEnergy),
-                                                         image: MoodCorrelation.getImage(.lowEnergy)),
                                         SelectionElement(selectionName: MoodCorrelation.getText(.apathetic),
                                                          image: MoodCorrelation.getImage(.apathetic)),
                                         SelectionElement(selectionName: MoodCorrelation.getText(.confused),
                                                          image: MoodCorrelation.getImage(.confused)),
-                                        SelectionElement(selectionName: MoodCorrelation.getText(.verySelfCritical),
-                                                         image: MoodCorrelation.getImage(.verySelfCritical)),
+                                        SelectionElement(selectionName: MoodCorrelation.getText(.selfcritical),
+                                                         image: MoodCorrelation.getImage(.selfcritical)),
                                         SelectionElement(selectionName: MoodCorrelation.getText(.emotional),
-                                                         image: MoodCorrelation.getImage(.emotional))]
+                                                         image: MoodCorrelation.getImage(.emotional)),
+                                        SelectionElement(selectionName: MoodCorrelation.getText(.tired),
+                                                         image: MoodCorrelation.getImage(.tired))]
     }
 
     static func getData(type: SelectionType) -> SelectionData {

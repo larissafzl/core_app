@@ -19,29 +19,27 @@ enum MoodCorrelation {
             return Mood.happy.rawValue
         case .energetic:
             return Mood.energetic.rawValue
-        case .sleepy:
-            return Mood.sleepy.rawValue
         case .irritated:
             return Mood.irritated.rawValue
         case .anxious:
             return Mood.anxious.rawValue
         case .sad:
             return Mood.sad.rawValue
-        case .lowEnergy:
-            return Mood.lowEnergy.rawValue
         case .apathetic:
             return Mood.apathetic.rawValue
         case .confused:
             return Mood.confused.rawValue
-        case .verySelfCritical:
-            return Mood.verySelfCritical.rawValue
         case .emotional:
             return Mood.emotional.rawValue
+        case .selfcritical:
+            return Mood.selfCritical.rawValue
+        case .tired:
+            return Mood.tired.rawValue
         }
     }
 
     static func getMoodType(_ text: String) -> MoodType {
-        let mood = Mood(rawValue: text)
+        guard let mood = Mood(rawValue: text) else { return .anxious }
         switch mood {
         case .calm:
             return MoodType.calm
@@ -49,26 +47,22 @@ enum MoodCorrelation {
             return MoodType.happy
         case .energetic:
             return MoodType.energetic
-        case .sleepy:
-            return MoodType.sleepy
         case .irritated:
             return MoodType.irritated
         case .anxious:
             return MoodType.anxious
         case .sad:
             return MoodType.sad
-        case .lowEnergy:
-            return MoodType.lowEnergy
         case .apathetic:
             return MoodType.apathetic
         case .confused:
             return MoodType.confused
-        case .verySelfCritical:
-            return MoodType.verySelfCritical
         case .emotional:
             return MoodType.emotional
-        case nil:
-            return MoodType.calm
+        case .selfCritical:
+            return MoodType.selfcritical
+        case .tired:
+            return MoodType.tired
         }
     }
 
@@ -80,25 +74,22 @@ enum MoodCorrelation {
             return Images.moodHappy.swiftUIImage
         case .energetic:
             return Images.moodEnergetic.swiftUIImage
-        case .sleepy:
-            return Images.moodTired.swiftUIImage
         case .irritated:
             return Images.moodIrritated.swiftUIImage
         case .anxious:
             return Images.moodAnxious.swiftUIImage
         case .sad:
             return Images.moodSad.swiftUIImage
-        case .lowEnergy:
-            // deletar
-            return Images.symptomAcne.swiftUIImage
         case .apathetic:
             return Images.moodApathetic.swiftUIImage
         case .confused:
             return Images.moodConfused.swiftUIImage
-        case .verySelfCritical:
-            return Images.moodSelfcritical.swiftUIImage
         case .emotional:
             return Images.moodEmotional.swiftUIImage
+        case .selfcritical:
+            return Images.moodSelfcritical.swiftUIImage
+        case .tired:
+            return Images.moodTired.swiftUIImage
         }
     }
 }
