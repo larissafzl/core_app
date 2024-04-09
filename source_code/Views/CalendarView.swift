@@ -11,11 +11,28 @@ import SwiftUI
 
 struct CalendarView: View {
     @Environment(\.modelContext) private var context
+    //TODO: retirar cycle service
     @State var cycleService: CycleService
-    @Binding var date: Date
+    @Binding var date: Date {
+        didSet {
+            
+        }
+    }
+    @State var cycle: Cycle
 
     var monthToPass = Calendar.current.component(.month, from: Date())
     var yearToPass = Calendar.current.component(.year, from: Date())
+    
+    init(cycleService: CycleService, date: Binding<Date>) {
+        self.cycleService = cycleService
+        self._date = date
+        
+        
+    }
+    
+    static func getCycleByDate(cycles: [Cycle], date: Date) -> Cycle {
+        
+    }
 
     var body: some View {
         ScrollView {
@@ -57,6 +74,7 @@ struct CalendarView: View {
                                           context: context, selectionType: .symptons, date: Date())
                             SelectedFrame(cycle: cycleService.cycles.first!,
                                           context: context, selectionType: .mood, date: Date())
+                            SexualActivityComponent(currentCycle: <#Cycle#>, currentDay: date)
                         }
                         LazyVStack {
                             LibidoIntensityFrame()
