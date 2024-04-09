@@ -50,7 +50,7 @@ struct CalendarView: View {
                     Text("Personal Records")
                         .font(.system(.title2))
 
-                    LazyHStack {
+                    LazyHStack(alignment: .top) {
                         LazyVStack {
                             SelectedFrame(cycle: cycleService.cycles.first!,
                                           cycleService: cycleService, selectionType: .symptons, date: Date())
@@ -65,6 +65,7 @@ struct CalendarView: View {
 
                     Spacer()
                 }
+                .padding(.bottom, 150)
                 .padding()
             }
         }
