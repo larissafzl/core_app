@@ -5,23 +5,32 @@
 //  Created by Larissa Fazolin on 04/04/24.
 //
 
+import BackendLib
+import SwiftData
 import SwiftUI
 
 struct CalendarView: View {
+    @State var cycleService: CycleService
+    @Binding var date: Date
+
+    var monthToPass = Calendar.current.component(.month, from: Date())
+    var yearToPass = Calendar.current.component(.year, from: Date())
+
     var body: some View {
         ScrollView {
             HStack {
-                VStack(alignment: .leading) {
+                LazyVStack(alignment: .leading) {
                     // Greetings
                     Text("Hello, Julia!")
                         .font(.system(.title2))
 
-                    HStack {
+                    LazyHStack {
                         // Calendar
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 460, height: 370)
+                        CalendarComponent(month: monthToPass,
+                                          year: yearToPass,
+                                          date: $date)
 
-                        VStack(alignment: .leading) {
+                        LazyVStack(alignment: .leading) {
                             // Begin cycle
                             RoundedRectangle(cornerRadius: 10)
                                 .frame(width: 142, height: 78)
@@ -41,27 +50,23 @@ struct CalendarView: View {
                     Text("Personal Records")
                         .font(.system(.title2))
 
-                    HStack {
-                        // Calendar
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 460, height: 370)
-
-                        VStack(alignment: .leading) {
-                            // Begin cycle
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(width: 142, height: 78)
-
-                            // Current cycle phase
-                            RoundedRectangle(cornerRadius: 10)
-                                .frame(width: 317, height: 281)
+                    LazyHStack(alignment: .top) {
+                        LazyVStack {
+                            SelectedFrame(cycle: cycleService.cycles.first!,
+                                          cycleService: cycleService, selectionType: .symptons, date: Date())
+                            SelectedFrame(cycle: cycleService.cycles.first!,
+                                          cycleService: cycleService, selectionType: .mood, date: Date())
+                        }
+                        LazyVStack {
+                            LibidoIntensityFrame()
+                            FlowPeriodIntensity()
                         }
                     }
 
                     Spacer()
                 }
+                .padding(.bottom, 150)
                 .padding()
-
-                Spacer()
             }
         }
     }
