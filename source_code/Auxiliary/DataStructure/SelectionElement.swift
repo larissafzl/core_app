@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct SelectionElement: Equatable, Hashable {
+struct SelectionElement: Equatable, Identifiable {
+    var id = UUID()
     var selectionName: String
+    var image: Image
     var didTap = false
 
     mutating func tap() {
