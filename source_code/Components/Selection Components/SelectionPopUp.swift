@@ -163,8 +163,6 @@ struct SelectionPopUp: View {
             }
             Divider()
             Button {
-                save()
-                passToFrame()
                 dismiss()
             } label: {
                 Text("Concluído")
@@ -175,5 +173,10 @@ struct SelectionPopUp: View {
         }
         .padding(.vertical)
         .background(Color.white)
+        .onDisappear {
+            save()
+            passToFrame()
+            dismiss()
+        }
     }
 }

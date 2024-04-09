@@ -77,15 +77,13 @@ enum SymptomCorrelation {
         case .headache:
             return Images.symptomHeadache.swiftUIImage
         case .fever:
-            // faltante
-            return Images.symptomAcne.swiftUIImage
+            return Images.symptomFever.swiftUIImage
         case .backache:
             return Images.symptomBackpain.swiftUIImage
         case .acne:
             return Images.symptomAcne.swiftUIImage
         case .tiredness:
-            // faltante
-            return Images.symptomAcne.swiftUIImage
+            return Images.symptomTiredness.swiftUIImage
         case .veryHungry:
             return Images.symptomLargeappetite.swiftUIImage
         case .notHungry:

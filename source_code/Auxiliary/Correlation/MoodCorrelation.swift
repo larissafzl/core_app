@@ -83,15 +83,14 @@ enum MoodCorrelation {
         case .sleepy:
             return Images.moodTired.swiftUIImage
         case .irritated:
-            // faltante
-            return Images.moodCalm.swiftUIImage
+            return Images.moodIrritated.swiftUIImage
         case .anxious:
             return Images.moodAnxious.swiftUIImage
         case .sad:
             return Images.moodSad.swiftUIImage
         case .lowEnergy:
-            // faltante
-            return Images.moodSad.swiftUIImage
+            // deletar
+            return Images.symptomAcne.swiftUIImage
         case .apathetic:
             return Images.moodApathetic.swiftUIImage
         case .confused:
