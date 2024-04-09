@@ -10,6 +10,7 @@ import SwiftData
 import SwiftUI
 
 struct CalendarView: View {
+    @Environment(\.modelContext) private var context
     @State var cycleService: CycleService
     @Binding var date: Date
 
@@ -53,9 +54,9 @@ struct CalendarView: View {
                     LazyHStack(alignment: .top) {
                         LazyVStack {
                             SelectedFrame(cycle: cycleService.cycles.first!,
-                                          cycleService: cycleService, selectionType: .symptons, date: Date())
+                                          context: context, selectionType: .symptons, date: Date())
                             SelectedFrame(cycle: cycleService.cycles.first!,
-                                          cycleService: cycleService, selectionType: .mood, date: Date())
+                                          context: context, selectionType: .mood, date: Date())
                         }
                         LazyVStack {
                             LibidoIntensityFrame()
